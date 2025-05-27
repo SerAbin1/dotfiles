@@ -20,6 +20,11 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
 
+      -- Setup for C++
+      lspconfig.clangd.setup({
+        capabilities = capabilities,
+      })
+
       -- Set up ts_ls for Node.js and JavaScript/TypeScript development
       lspconfig.ts_ls.setup({
         capabilities = capabilities,

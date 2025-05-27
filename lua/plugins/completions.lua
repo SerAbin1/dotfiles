@@ -1,26 +1,18 @@
 return {
   {
-    "hrsh7th/cmp-nvim-lsp"
-  },
-  {
-    "L3MON4D3/LuaSnip",
-    dependencies = {
-      "saadparwaiz1/cmp_luasnip",
-      "rafamadriz/friendly-snippets",
-    },
-    -- Commented out so snippets are not used initially
-    -- enabled = false,
-  },
-  {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "saadparwaiz1/cmp_luasnip", -- needed to hook snippets into cmp
+    },
     config = function()
       local cmp = require("cmp")
-      -- require("luasnip.loaders.from_vscode").lazy_load() -- Commented out to disable snippet loading
+      local luasnip = require("luasnip")
 
       cmp.setup({
         snippet = {
           expand = function(args)
-            -- require("luasnip").lsp_expand(args.body) -- Commented out to disable snippet expansion
+            luasnip.lsp_expand(args.body)
           end,
         },
         window = {
@@ -36,11 +28,12 @@ return {
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          -- { name = "luasnip" }, -- Commented out to disable snippets
+          { name = "luasnip" },
         }, {
           { name = "buffer" },
         }),
       })
     end,
-  },
+  }
 }
+
