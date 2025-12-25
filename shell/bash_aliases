@@ -1,0 +1,63 @@
+alias cd="z"
+
+alias la="ls -a"
+
+alias gs="git status"
+
+alias gl="git log"
+
+alias gc="git add . && git commit"
+
+alias gcp="git add . && git commit && git push"
+
+alias login="ssh root@166.0.244.214"
+
+alias ghidra="/home/sonu07/ghidra_11.4.2_PUBLIC/ghidraRun"
+
+g() {
+    g++ "$1" -Wall -Wextra -o "${1%.cpp}" && ./"${1%.cpp}"
+}
+
+cr() {
+    git init && gh repo create "$1" --public --source=. --remote=origin
+}
+
+gac() {
+    git add . && git commit -m "$1" && git push
+}
+
+react() {
+    npm create vite@latest . -- --template react
+}
+
+sess() {
+	tmux new -s "$1"
+}
+
+att() {
+	tmux attach -t "$1"
+}
+
+acttail() {
+    npx @tailwindcss/cli -i style.css -o output.css --watch
+}
+
+f() {
+    local file
+    file=$(fzf --height=40% --preview 'cat {} 2>/dev/null' --preview-window=right:60%)
+    [ -n "$file" ] && nvim "$file"
+}
+
+fd() {
+    local dir
+    dir=$(find . -type d 2>/dev/null | fzf --height=40%)
+    [ -n "$dir" ] && cd "$dir" && ls
+}
+
+vnv() {
+	source "$1"/bin/activate
+}
+
+mkcd() {
+	mkdir "$1" && cd "$1"
+}
