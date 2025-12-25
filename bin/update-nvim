@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CURRENT_VERSION="$(nvim --version | head -n 1 | awk '{print $2}')"
+
+LATEST_TAG="$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest \
+  | grep '"tag_name"' | cut -d '"' -f4)"
+
+if [ "$CURRENT_VERSION" = "$LATEST_TAG" ]; then
+  echo "Neovim is already up to date ($CURRENT_VERSION). Nothing to do."
+  exit 0
+fi
+
+echo "Updating Neovim: $CURRENT_VERSION → $LATEST_TAG"
+
+TMP_DIR="$(mktemp -d)"
+cleanup() { rm -rf "$TMP_DIR"; }
+trap cleanup EXIT
+
+cd "$TMP_DIR"
+wget -q "https://github.com/neovim/neovim/releases/download/$LATEST_TAG/nvim-linux-x86_64.appimage"
+
+chmod +x nvim-linux-x86_64.appimage
+
+./nvim-linux-x86_64.appimage --version | head -n 1
+
+sudo cp /usr/local/bin/nvim /usr/local/bin/nvim.bak
+sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
+
+echo "Update complete."
+nvim --version | head -n 1
