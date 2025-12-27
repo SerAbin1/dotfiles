@@ -14,6 +14,10 @@ alias login="ssh root@166.0.244.214"
 
 alias ghidra="/home/sonu07/ghidra_11.4.2_PUBLIC/ghidraRun"
 
+scpit() {
+    scp root@166.0.244.214:"$1" .
+}
+
 g() {
     g++ "$1" -Wall -Wextra -o "${1%.cpp}" && ./"${1%.cpp}"
 }
