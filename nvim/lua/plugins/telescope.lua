@@ -37,7 +37,7 @@ return {
 			vim.keymap.set("n", "<leader>b", builtin.buffers, {})
 			vim.keymap.set("n", "<leader>j", ":Telescope file_browser<CR>", { noremap = true })
 		-- Open file browser at current buffer's directory (useful for deep nested paths)
-		vim.keymap.set("n", "<leader>jj", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { noremap = true })
+		vim.keymap.set("n", "<leader>k", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { noremap = true })
 		end,
 	},
 }

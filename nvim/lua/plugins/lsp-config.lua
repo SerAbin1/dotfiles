@@ -15,6 +15,18 @@ return {
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+			vim.api.nvim_create_autocmd("LspAttach", {
+				callback = function(args)
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					if client.server_capabilities.definitionProvider then
+						vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { buffer = args.buf, desc = "Go to definition" })
+					end
+					if client.server_capabilities.referencesProvider then
+						vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { buffer = args.buf, desc = "Go to references" })
+					end
+				end,
+			})
+
 			-- List of servers to ensure are installed
 			local servers = { "clangd", "ts_ls", "pyright", "jdtls", "gopls" }
 
