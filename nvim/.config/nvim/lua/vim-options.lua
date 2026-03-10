@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
 	group = "CustomTabSettings",
-	pattern = { "c", "cpp", "md", "go" },
+	pattern = { "c", "cpp", "md", "go", "mdx" },
 	callback = function()
 		vim.opt_local.tabstop = 4
 		vim.opt_local.shiftwidth = 4
@@ -73,8 +73,8 @@ vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show diagn
 
 ---------------------------------------------------------
 
-vim.opt.clipboard = "unnamedplus"
 
+vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
 

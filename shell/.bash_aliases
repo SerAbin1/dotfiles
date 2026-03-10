@@ -10,16 +10,10 @@ alias gc="git add . && git commit"
 
 alias gcp="git add . && git commit && git push"
 
-alias login="ssh root@166.0.244.214"
-
-alias ghidra="/home/sonu07/ghidra_11.4.2_PUBLIC/ghidraRun"
+alias aider="aider --model openrouter/openrouter/free"
 
 getgo() {
     wget http://media.pragprog.com/titles/tjgo/code/"$1"
-}
-
-scpit() {
-    scp root@166.0.244.214:"$1" .
 }
 
 g() {

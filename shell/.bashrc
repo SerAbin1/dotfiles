@@ -36,14 +36,14 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
+#case "$TERM" in
+#    xterm*|*-256color) color_prompt=yes;;
+#esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -121,3 +121,21 @@ fi
 
 # initialize zoxide
 eval "$(zoxide init bash)"
+
+# flutter
+export PATH="$HOME/deps/flutter/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# to prevent ctrl+s from freezing the terminal (for tmux)
+stty -ixon
+
+# add GO to path
+export PATH=$PATH:/usr/local/go/bin
+
+# opencode
+export PATH=/home/sonu007/.opencode/bin:$PATH
+
+eval "$(starship init bash)"
