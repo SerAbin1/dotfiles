@@ -139,3 +139,4 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=/home/sonu007/.opencode/bin:$PATH
 
 eval "$(starship init bash)"
+export PATH=$PATH:$HOME/go/bin
