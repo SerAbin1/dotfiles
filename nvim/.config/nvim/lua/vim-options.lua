@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
 	group = "CustomTabSettings",
-	pattern = { "c", "cpp", "md", "go", "mdx" },
+	pattern = { "*" },
 	callback = function()
 		vim.opt_local.tabstop = 4
 		vim.opt_local.shiftwidth = 4
@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -----------------Autosave section----------------
 -- Autosave toggle flag
-local autosave_enabled = true
+local autosave_enabled = false
 
 -- Function to enable or disable autosave autocmd
 local function set_autosave(enabled)
@@ -84,3 +84,4 @@ vim.keymap.set("n", "<leader>q", ":wq<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true, silent = true })
 -- Map <leader>cd to :Copilot disable
 vim.api.nvim_set_keymap("n", "<leader>cd", ":Copilot disable<CR>", { noremap = true, silent = true })
+vim.keymap.set("t", "<esc><esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
