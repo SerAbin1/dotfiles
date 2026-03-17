@@ -56,18 +56,6 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-git_branch2() {
-    branch=$(git branch 2>/dev/null | grep '\*' | sed 's/* /{/' | sed 's/$/}/')
-    echo "$branch"
-}
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[0;31m\]$(git_branch2)\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h\w\$ '
-fi
-unset color_prompt force_color_prompt
-
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -104,6 +92,10 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+
+# vi mode in bash
+set -o vi
 
 # enable tab cycling
 bind '"\C-i":menu-complete'

@@ -84,4 +84,3 @@ vim.keymap.set("n", "<leader>q", ":wq<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true, silent = true })
 -- Map <leader>cd to :Copilot disable
 vim.api.nvim_set_keymap("n", "<leader>cd", ":Copilot disable<CR>", { noremap = true, silent = true })
-vim.keymap.set("t", "<esc><esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
