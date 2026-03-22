@@ -4,55 +4,19 @@ vim.g.mapleader = " "
 vim.api.nvim_create_augroup("CustomTabSettings", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-	group = "CustomTabSettings",
-	pattern = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "css", "json", "lua", "java" },
-	callback = function()
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.expandtab = true
-	end,
-})
+    group = "CustomTabSettings",
+    pattern = { "*" },
+    callback = function()
+        local two_space = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "css", "json", "lua", "java" }
+        local ft = vim.bo.filetype
+        local indent = vim.tbl_contains(two_space, ft) and 2 or 4
 
-vim.api.nvim_create_autocmd("FileType", {
-	group = "CustomTabSettings",
-	pattern = { "*" },
-	callback = function()
-		vim.opt_local.tabstop = 4
-		vim.opt_local.shiftwidth = 4
-		vim.opt_local.expandtab = true
-	end,
+        vim.opt_local.tabstop = indent
+        vim.opt_local.shiftwidth = indent
+        vim.opt_local.expandtab = true
+    end,
 })
-
 -----------Tab section end-------------------------
-
------------------Autosave section----------------
--- Autosave toggle flag
-local autosave_enabled = false
-
--- Function to enable or disable autosave autocmd
-local function set_autosave(enabled)
-	if enabled then
-		vim.api.nvim_create_autocmd({ "InsertLeave", "BufLeave", "FocusLost" }, {
-			group = vim.api.nvim_create_augroup("MyAutoSaveGroup", { clear = true }),
-			pattern = "*",
-			command = "wall",
-		})
-	else
-		vim.api.nvim_del_augroup_by_name("MyAutoSaveGroup")
-		print("Autosave disabled")
-	end
-	autosave_enabled = enabled
-end
-
--- Initially enable autosave
-set_autosave(true)
-
--- Map <Space>s to toggle autosave
-vim.keymap.set("n", "<leader>s", function()
-	set_autosave(not autosave_enabled)
-end, { desc = "Toggle autosave" })
-
---------------Autosave section end--------------------
 
 --------------Diagnostics-----------------------------
 vim.diagnostic.config({

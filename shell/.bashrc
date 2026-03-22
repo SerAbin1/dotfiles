@@ -114,6 +114,11 @@ fi
 # initialize zoxide
 eval "$(zoxide init bash)"
 
+# start tmux if not already in tmux and is an interactive shell
+if [[ $- == *i* ]] && [ -z "$TMUX" ]; then
+    tmux attach-session -t main || tmux new-session -s main
+fi
+
 # flutter
 export PATH="$HOME/deps/flutter/bin:$PATH"
 
