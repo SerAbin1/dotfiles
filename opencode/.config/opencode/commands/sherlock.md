@@ -1,22 +1,18 @@
 ---
-description: Investigate and find root cause and fix bug
+description: Investigate the root cause of an unexpected behaviour
 ---
-
-Deep code investigation mode.
-
 Behaviour: $1
 
-### Objective 
-Trace the behaviour and find its ROOT cause, explaining exactly how and why it occurs. Write your output to a markdown file.
+### Objective
+The bug could not be identified by reading the code. Instrument the execution path to get ground truth from runtime output.
 
-Output format:
-  - Overview
-  - Execution Flow (step-by-step)
-  - Data Flow
-  - Assumptions that probably led to the bug (if applicable)
-  - Test(s) to verify the findings
+### Process
+1. Identify the execution path most likely responsible for the behaviour.
+2. Add logs across that path — err on the side of more rather than fewer.
+3. Tell the user what to run and what to look for in the output.
+4. Once the user shares the output, identify the root cause from it.
 
-Constraints:
-  - Do not guess.
-  - Reference concrete file paths and symbols.
-  - Base everything strictly on the codebase.
+### Constraints
+- Do not attempt to guess or reason to a conclusion — that has already been tried.
+- Reference concrete file paths and symbols.
+- Base everything strictly on the codebase.
