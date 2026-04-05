@@ -1,30 +1,38 @@
 ---
-description: Persist a bug investigation to Obsidian vault
+description: Investigate, answer, fix, and document a bug
 ---
-projectName: $1
 
-### Objective
-Document the bug from this conversation into the Obsidian file for the current project. 
+fileName: $1
+sectionName: $2
 
-### Steps
-1. Tell the user and stop immediately if projectName is not given.
-2. Run `echo "=== Experience ===" && ls ~/Desktop/Documents/Obsidian/Software_Development/Experience/ && echo "=== Projects ===" && ls ~/Desktop/Documents/Obsidian/Software_Development/Projects/` and match against the projectName. If not found, tell the user and stop.
-3. Review the conversation to extract: root cause, the fix, and the lesson.
-4. Verify all file paths, symbol names, and technical claims by reading the relevant parts of the codebase. Correct anything in the conversation summary that doesn't match reality.
-5. Write the formatted section to a variable, then append to the file using `>>`. Do not read the file. Never overwrite existing content.
+# Objective
+Use the Obsidian section as the source of truth to understand the bug, answer all questions, then (after approval) fix the issue and update the documentation.
 
-### Template
-# {Bug Title}
-## Root Cause
-{Exact cause, referencing verified file paths and symbols.}
-## Why It Happened
-{The assumption or gap that allowed this bug to exist.}
-## Fix
-{What was changed and why it resolves the root cause.}
-## Lesson
-{What this reveals about the codebase, architecture, or process — if anything.}
+1. Run `echo "=== Experience ===" && ls /home/sonu007/Desktop/Documents/Obsidian/Software_Development/Experience/ && echo "=== Projects ===" && ls /home/sonu007/Desktop/Documents/Obsidian/Software_Development/Projects/` and match against the fileName. If not found, tell the user and stop.
+2. Read section: "# {sectionName}".
+3. Add questions, in addition to any the user may have posed, that could reveal the source of bug and will otherwise be instructive to have answered.
+4. Analyze codebase.
+5. Answer all questions (explicit + implicit).
+6. Identify gaps or incorrect assumptions.
+7. Present:
+   - Understanding
+   - Answers
+   - Gaps
+   - Proposed Fix
+8. WAIT for user approval.
+9. Write tests reproducing the bug if applicable.
+10. Implement the fix in codebase.
+11. Validate correctness via tests or manual.
+12. Rewrite section "# {sectionName}" as follows:
+   # The name of the section shall match the commit message.
+     {Provide bug description}
+   ## Fix
+      {the implemented fix, add reference to commit hash}
+   # Notes
+     {any suprises encountered during implementation}
 
-### Constraints
-- Verify all technical claims against the codebase before writing.
-- Base content on the conversation and codebase only — do not speculate.
-- Keep language direct and dense. No filler.
+# Constraints
+- Do not modify code before approval.
+- All claims must be verified against code.
+- The section must fully answer the original questions.
+- Keep writing dense and technical.

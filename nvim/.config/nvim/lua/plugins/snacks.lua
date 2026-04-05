@@ -2,24 +2,37 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
+
   ---@type snacks.Config
   opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-    bigfile = { enabled = true }, -- disables lsp, treesitter etc in big files to keep perf
-    -- dashboard = { enabled = true }, -- alpha alternative
-    explorer = { enabled = true }, -- file explorer
-    input = { enabled = true }, -- better input
-    -- picker = { enabled = true }, -- telescope alternative
-    notifier = { enabled = true }, -- better notification (floating)
-    quickfile = { enabled = true }, -- Opens files faster by deferring plugin loading. Fully automatic.
-    scope = { enabled = true }, -- Detects current code scope (function, block, etc.). Used by other plugins/indentation.
-    scroll = { enabled = true }, -- smooth scrolling
-    statuscolumn = { enabled = true }, -- nicer left statuscolumn
-    words = { enabled = true }, --  Highlights all occurrences of the word under your cursor.
+    bigfile = { enabled = true },
+    explorer = { enabled = true },
+    input = { enabled = true },
+    notifier = { enabled = true },
+    quickfile = { enabled = true },
+    scope = { enabled = true },
+    scroll = { enabled = true },
+    statuscolumn = { enabled = true },
+    words = { enabled = true },
+    picker = { enabled = true }, -- telescope replacement
   },
-  keys = {
-    { "<leader>e", function() Snacks.explorer() end, desc = "Toggle file explorer" },
-  },
+
+  config = function(_, opts)
+    local snacks = require("snacks")
+    snacks.setup(opts)
+
+    local pick = snacks.picker
+
+    -- keymaps
+    vim.keymap.set("n", "<leader>f",  function() pick.files() end, { desc = "Find files" })
+    vim.keymap.set("n", "<leader>o", function() pick.recent() end, { desc = "Old files" })
+    vim.keymap.set("n", "<leader>g", function() pick.grep_word() end, { desc = "[S]earch Current [W]ord" })
+    vim.keymap.set("n", "<leader>lg", function() pick.grep() end, { desc = "Live grep" })
+    vim.keymap.set("n", "<leader>c", function() pick.git_log() end, { desc = "Git commits" })
+    vim.keymap.set("n", "<leader>b",  function() pick.buffers() end, { desc = "Buffers" })
+    vim.keymap.set("n", "<leader>e",  function() snacks.explorer() end, { desc = "Toggle file explorer" })
+    vim.keymap.set("n", "<leader>k",  function()
+      pick.files({ cwd = vim.fn.expand("%:p:h") })
+    end, { desc = "Find files (current dir)" })
+  end,
 }
