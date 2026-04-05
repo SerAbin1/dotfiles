@@ -29,7 +29,7 @@ vim.diagnostic.config({
 })
 
 -- Builtin LSP completion setup
-vim.o.autocomplete = true
+vim.o.autocomplete = false
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)

@@ -11,9 +11,9 @@ vim.pack.add({
     "https://github.com/stevearc/conform.nvim",
     "https://github.com/folke/snacks.nvim",
     "https://github.com/nvim-tree/nvim-web-devicons",
-    "https://github.com/tpope/vim-fugitive",
     "https://github.com/echasnovski/mini.ai",
     "https://github.com/nickjvandyke/opencode.nvim",
+    { src = "https://github.com/saghen/blink.cmp", version = "v1.10.2" },
 })
 
 require("plugins.lsp")
@@ -25,4 +25,5 @@ require("plugins.lualine")
 require("plugins.formatting")
 require("plugins.snacks")
 require("plugins.opencode-nvim")
+require("plugins.completions")
 vim.cmd.colorscheme("catppuccin-mocha")
