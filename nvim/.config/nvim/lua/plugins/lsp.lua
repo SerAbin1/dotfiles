@@ -1,14 +1,35 @@
 require("mason").setup()
 
+-- LSP keymaps (attached per buffer)
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client.server_capabilities.definitionProvider then
-            vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { buffer = args.buf, desc = "Go to definition" })
+        local buf = args.buf
+
+        local map = function(keys, func, desc)
+            vim.keymap.set("n", keys, func, { buffer = buf, desc = desc })
         end
-        if client.server_capabilities.referencesProvider then
-            vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { buffer = args.buf, desc = "Go to references" })
+
+        -- Info
+        if client.server_capabilities.hoverProvider then
+            map("K", vim.lsp.buf.hover, "Hover")
         end
+
+        map("<leader>sh", vim.lsp.buf.signature_help, "Signature help")
+
+        -- Refactoring
+        map("<leader>rn", vim.lsp.buf.rename, "Rename")
+        map("<leader>ca", vim.lsp.buf.code_action, "Code action")
+
+      end,
+})
+
+vim.lsp.inlay_hint.enable(true)
+
+-- Format on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+    callback = function()
+        vim.lsp.buf.format({ async = false })
     end,
 })
 
@@ -52,6 +73,10 @@ for _, server in ipairs(servers) do
     end
 end
 
+vim.lsp.config("dartls", {
+    cmd = { "dart", "language-server", "--protocol=lsp" },
+})
+
 require("mason-lspconfig").setup({
     ensure_installed = servers,
     automatic_installation = true,
@@ -60,3 +85,4 @@ require("mason-lspconfig").setup({
 for _, server in ipairs(servers) do
     vim.lsp.enable(server)
 end
+vim.lsp.enable("dartls")
