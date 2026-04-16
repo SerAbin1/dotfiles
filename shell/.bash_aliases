@@ -12,6 +12,8 @@ alias gcp="git add . && git commit && git push"
 
 alias aider="aider --model openrouter/openrouter/free"
 
+alias update="sudo apt update && sudo apt upgrade -y"
+
 getgo() {
     wget http://media.pragprog.com/titles/tjgo/code/"$1"
 }
@@ -24,35 +26,18 @@ cr() {
     git init && gh repo create "$1" --public --source=. --remote=origin
 }
 
-gac() {
-    git add . && git commit -m "$1" && git push
-}
-
 react() {
     npm create vite@latest . -- --template react
 }
 
-sess() {
-	tmux new -s "$1"
-}
-
-att() {
-	tmux attach -t "$1"
-}
-
-acttail() {
-    npx @tailwindcss/cli -i style.css -o output.css --watch
-}
-
 f() {
     local file
-    file=$(fzf --height=40% --preview 'cat {} 2>/dev/null' --preview-window=right:60%)
+    file=$(find ~ -type f 2>/dev/null | fzf --height=40% --preview 'cat {} 2>/dev/null' --preview-window=right:60%)
     [ -n "$file" ] && nvim "$file"
 }
-
 fd() {
     local dir
-    dir=$(find . -type d 2>/dev/null | fzf --height=40%)
+    dir=$(find ~ -type d 2>/dev/null | fzf --height=40%)
     [ -n "$dir" ] && cd "$dir" && ls
 }
 

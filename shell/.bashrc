@@ -16,8 +16,10 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
+
+PROMPT_COMMAND="history -a; history -c; history -r"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -111,6 +113,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# better reverse-history search
+source /usr/share/doc/fzf/examples/key-bindings.bash
+
 # initialize zoxide
 eval "$(zoxide init bash)"
 
@@ -137,3 +142,4 @@ export PATH=/home/sonu007/.opencode/bin:$PATH
 
 eval "$(starship init bash)"
 export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/deps/android-sdk/platform-tools
