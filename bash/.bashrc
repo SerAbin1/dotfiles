@@ -125,7 +125,7 @@ if [[ $- == *i* ]] && [ -z "$TMUX" ]; then
 fi
 
 # flutter
-export PATH="$HOME/deps/flutter/bin:$PATH"
+export PATH="$HOME/dev/flutter/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -142,4 +142,4 @@ export PATH=/home/sonu007/.opencode/bin:$PATH
 
 eval "$(starship init bash)"
 export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:$HOME/deps/android-sdk/platform-tools
+export PATH=$PATH:$HOME/dev/Android/android-sdk/platform-tools

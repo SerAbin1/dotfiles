@@ -14,7 +14,7 @@ vim.pack.add({
     "https://github.com/echasnovski/mini.ai",
     "https://github.com/nickjvandyke/opencode.nvim",
     { src = "https://github.com/saghen/blink.cmp", version = "v1.10.2" },
-})
+}, { load = true })
 
 require("plugins.lsp")
 require("plugins.treesitter")

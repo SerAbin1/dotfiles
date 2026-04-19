@@ -33,7 +33,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
-local servers = { "clangd", "ts_ls", "pyright", "jdtls", "gopls" }
+-- local servers = { "clangd", "ts_ls", "pyright", "jdtls", "gopls" }
+
+local servers = { "clangd", "pyright" }
 
 vim.lsp.config("gopls", {
     settings = {
