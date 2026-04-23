@@ -141,5 +141,16 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=/home/sonu007/.opencode/bin:$PATH
 
 eval "$(starship init bash)"
+
+# go
 export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:$HOME/dev/Android/android-sdk/platform-tools
+
+# Android SDk
+export ANDROID_HOME=$HOME/dev/Android
+
+# adb 
+export PATH="$HOME/dev/Android/platform-tools:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
