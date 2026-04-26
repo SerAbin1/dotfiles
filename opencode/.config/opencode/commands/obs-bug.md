@@ -8,7 +8,7 @@ sectionName: $2
 # Objective
 Use the Obsidian section as the source of truth to understand the bug, answer all questions, then (after approval) fix the issue and update the documentation.
 
-1. Run `echo "=== Experience ===" && ls /home/sonu007/Desktop/Documents/Obsidian/Software_Development/Experience/ && echo "=== Projects ===" && ls /home/sonu007/Desktop/Documents/Obsidian/Software_Development/Projects/` and match against the fileName. If not found, tell the user and stop.
+1. Run `echo "=== Experience ===" && ls /home/sonu007/Documents/Obsidian/Software_Development/Experience/ && echo "=== Projects ===" && ls /home/sonu007/Documents/Obsidian/Software_Development/Projects/ echo "=== OSS ===" && ls /home/sonu007/Documents/Obsidian/Software_Development/OSS/` and match against the fileName. If not found, tell the user and stop.
 2. Read section: "# {sectionName}".
 3. Add questions, in addition to any the user may have posed, that could reveal the source of bug and will otherwise be instructive to have answered.
 4. Analyze codebase.

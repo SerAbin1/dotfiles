@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- local servers = { "clangd", "ts_ls", "pyright", "jdtls", "gopls" }
 
-local servers = { "clangd", "pyright" }
+local servers = { "clangd", "pyright", "dartls", "rust_analyzer" }
 
 vim.lsp.config("gopls", {
     settings = {
@@ -70,7 +70,7 @@ vim.lsp.config("gopls", {
 })
 
 for _, server in ipairs(servers) do
-    if server ~= "gopls" then
+    if server ~= "gopls" and server ~= "dartls" then
         vim.lsp.config(server, {})
     end
 end
@@ -79,12 +79,8 @@ vim.lsp.config("dartls", {
     cmd = { "dart", "language-server", "--protocol=lsp" },
 })
 
-require("mason-lspconfig").setup({
-    ensure_installed = servers,
-    automatic_installation = true,
-})
+require("mason-lspconfig").setup()
 
 for _, server in ipairs(servers) do
     vim.lsp.enable(server)
 end
-vim.lsp.enable("dartls")

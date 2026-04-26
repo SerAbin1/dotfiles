@@ -10,7 +10,7 @@ Document or update a feature section in the Obsidian file for the current projec
 
 ### Steps
 1. If `filename` was not provided, tell the user it is required and stop.
-2. Run `echo "=== Experience ===" && ls /home/sonu007/Desktop/Documents/Obsidian/Software_Development/Experience/ && echo "=== Projects ===" && ls /home/sonu007/Desktop/Documents/Obsidian/Software_Development/Projects/` and match `filename` against the results. If no match, tell the user and stop.
+1. Run `echo "=== Experience ===" && ls /home/sonu007/Documents/Obsidian/Software_Development/Experience/ && echo "=== Projects ===" && ls /home/sonu007/Documents/Obsidian/Software_Development/Projects/ echo "=== OSS ===" && ls /home/sonu007/Documents/Obsidian/Software_Development/OSS/` and match against the fileName. If not found, tell the user and stop.
 3. Review the conversation to extract: the decision made, alternatives rejected, implementation notes, and any issues encountered.
 4. Verify all file paths, symbol names, and technical claims by reading the relevant parts of the codebase. Correct anything that doesn't match reality.
 5. Build the formatted section in a variable (see Template).

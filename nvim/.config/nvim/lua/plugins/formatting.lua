@@ -15,6 +15,7 @@ conform.setup({
         python = { "isort", "black" },
         java = { "google-java-format" },
         go = { "gofumpt", "goimports" },
+        rust = { "rustfmt" }
     },
     formatters = {
         prettier = {},

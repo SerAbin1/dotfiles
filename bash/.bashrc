@@ -147,6 +147,8 @@ export PATH=$PATH:$HOME/go/bin
 
 # Android SDk
 export ANDROID_HOME=$HOME/dev/Android
+# JAVA
+export JAVA_HOME=$HOME/dev/android-studio/jbr
 
 # adb 
 export PATH="$HOME/dev/Android/platform-tools:$PATH"
@@ -154,3 +156,4 @@ export PATH="$HOME/dev/Android/platform-tools:$PATH"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+. "$HOME/.cargo/env"
