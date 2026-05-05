@@ -114,7 +114,8 @@ if ! shopt -oq posix; then
 fi
 
 # better reverse-history search
-source /usr/share/doc/fzf/examples/key-bindings.bash
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
 
 # initialize zoxide
 eval "$(zoxide init bash)"
