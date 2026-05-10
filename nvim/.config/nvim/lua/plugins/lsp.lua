@@ -76,10 +76,8 @@ for _, server in ipairs(servers) do
 end
 
 vim.lsp.config("dartls", {
-    cmd = { "dart", "language-server", "--protocol=lsp" },
+    cmd = { vim.fn.expand("~/fvm/default/bin/dart"), "language-server", "--protocol=lsp" },
 })
-
-require("mason-lspconfig").setup()
 
 for _, server in ipairs(servers) do
     vim.lsp.enable(server)
