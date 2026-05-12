@@ -125,36 +125,18 @@ if [[ $- == *i* ]] && [ -z "$TMUX" ]; then
     tmux attach-session -t main || tmux new-session -s main
 fi
 
-# flutter
-export PATH="$HOME/dev/flutter/bin:$PATH"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# nvm
+source /usr/share/nvm/init-nvm.sh
 
 # to prevent ctrl+s from freezing the terminal (for tmux)
 stty -ixon
 
-# add GO to path
-export PATH=$PATH:/usr/local/go/bin
-
-# opencode
-export PATH=/home/sonu007/.opencode/bin:$PATH
-
 eval "$(starship init bash)"
 
-# go
-export PATH=$PATH:$HOME/go/bin
-
-# Android SDk
-export ANDROID_HOME=$HOME/dev/Android
-# JAVA
-export JAVA_HOME=$HOME/dev/android-studio/jbr
-
-# adb 
-export PATH="$HOME/dev/Android/platform-tools:$PATH"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-. "$HOME/.cargo/env"
+# pnpm
+export PNPM_HOME="/home/sonu007/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

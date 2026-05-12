@@ -10,24 +10,12 @@ alias gc="git add . && git commit"
 
 alias gcp="git add . && git commit && git push"
 
-alias aider="aider --model openrouter/openrouter/free"
+alias pacman="sudo pacman"
 
-alias update="sudo apt update && sudo apt upgrade -y"
-
-getgo() {
-    wget http://media.pragprog.com/titles/tjgo/code/"$1"
-}
-
-g() {
-    g++ "$1" -Wall -Wextra -o "${1%.cpp}" && ./"${1%.cpp}"
-}
+alias flutter="fvm flutter"
 
 cr() {
     git init && gh repo create "$1" --public --source=. --remote=origin
-}
-
-react() {
-    npm create vite@latest . -- --template react
 }
 
 f() {
@@ -39,10 +27,6 @@ fd() {
     local dir
     dir=$(find ~ -type d 2>/dev/null | fzf --height=40%)
     [ -n "$dir" ] && cd "$dir" && ls
-}
-
-vnv() {
-	source "$1"/bin/activate
 }
 
 mkcd() {

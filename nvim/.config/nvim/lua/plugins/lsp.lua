@@ -76,7 +76,7 @@ for _, server in ipairs(servers) do
 end
 
 vim.lsp.config("dartls", {
-    cmd = { vim.fn.expand("~/fvm/default/bin/dart"), "language-server", "--protocol=lsp" },
+    cmd = { vim.fn.expand("~/dev/fvm/default/bin/dart"), "language-server", "--protocol=lsp" },
 })
 
 for _, server in ipairs(servers) do
