@@ -8,6 +8,7 @@
 [core]
         editor = nvim
         autocrlf = input
+	pager = delta
 [push]
         autoSetupRemote = true
 [rerere]
@@ -16,3 +17,5 @@
 	algorithm = histogram
 [merge]
 	conflictstyle = zdiff3
+[delta]
+	side-by-side = true

@@ -10,9 +10,17 @@ alias gc="git add . && git commit"
 
 alias gcp="git add . && git commit && git push"
 
+alias gp="git pull"
+
 alias pacman="sudo pacman"
 
 alias flutter="fvm flutter"
+
+alias cat="bat"
+
+alias ls="eza --group-directories-first"
+
+alias tree="eza --tree --level=2"
 
 cr() {
     git init && gh repo create "$1" --public --source=. --remote=origin
