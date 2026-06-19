@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- local servers = { "clangd", "ts_ls", "pyright", "jdtls", "gopls" }
 
-local servers = { "dartls", "rust_analyzer", "vtsls", "lua_ls" }
+local servers = { "dartls", "rust_analyzer", "vtsls", "lua_ls", "gopls" }
 
 vim.lsp.config("gopls", {
   settings = {

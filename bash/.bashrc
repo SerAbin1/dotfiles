@@ -113,6 +113,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# AUR creds for voting with yay 
+source ~/.config/yay/aur-creds
+
 # better reverse-history search
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
@@ -122,7 +125,7 @@ eval "$(zoxide init bash)"
 
 # start tmux if not already in tmux and is an interactive shell
 if [[ $- == *i* ]] && [ -z "$TMUX" ]; then
-    tmux attach-session -t main || tmux new-session -s main
+    ~/.work.sh
 fi
 
 # nvm
@@ -140,3 +143,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# add flutter and dart to PATH
+export PATH="/home/sonu007/fvm/default/bin:$PATH"
