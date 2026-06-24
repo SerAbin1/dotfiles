@@ -146,3 +146,12 @@ esac
 
 # add flutter and dart to PATH
 export PATH="/home/sonu007/fvm/default/bin:$PATH"
+
+# add pub-cache so that lefthook will be on path
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+# add adb to path
+export PATH="$PATH":"$HOME/dev/Android/platform-tools"
+
+# set editor to nvim (finally)
+export EDITOR=nvim

@@ -1,11 +1,18 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "permission": {
-      "edit": "ask",
-      "bash": "ask",
-      "external_directory": {
-        "/home/sonu007/Documents/Obsidian/Software_Development/Experience": "allow",
-        "/home/sonu007/Documents/Obsidian/Software_Development/Projects": "allow"
-      }
+    "edit": "ask",
+    "bash": {
+      "*": "ask",
+      "ls *": "allow",
+      "ls": "allow",
+      "cat *": "allow",
+      "grep *": "allow",
+      "find *": "allow"
+    },
+    "external_directory": {
+      "/home/sonu007/Documents/Obsidian/Software_Development/Experience": "allow",
+      "/home/sonu007/Documents/Obsidian/Software_Development/Projects": "allow"
+    }
   }
 }

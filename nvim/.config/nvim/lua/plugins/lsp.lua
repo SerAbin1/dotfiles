@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       map("K", vim.lsp.buf.hover, "Hover")
     end
 
-    map("<leader>sh", vim.lsp.buf.signature_help, "Signature help")
+    map("<leader>h", vim.lsp.buf.signature_help, "Signature help")
 
     -- Refactoring
     map("<leader>rn", vim.lsp.buf.rename, "Rename")
@@ -32,9 +32,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
--- local servers = { "clangd", "ts_ls", "pyright", "jdtls", "gopls" }
+local servers = { "dartls", "rust_analyzer", "vtsls", "lua_ls", "gopls", "kotlin-language-server" }
 
-local servers = { "dartls", "rust_analyzer", "vtsls", "lua_ls", "gopls" }
+for _, server in ipairs(servers) do
+  vim.lsp.config(server, {})
+end
 
 vim.lsp.config("gopls", {
   settings = {
@@ -68,14 +70,23 @@ vim.lsp.config("gopls", {
   },
 })
 
-for _, server in ipairs(servers) do
-  if server ~= "gopls" and server ~= "dartls" then
-    vim.lsp.config(server, {})
-  end
-end
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+    },
+  },
+})
 
 vim.lsp.config("dartls", {
   cmd = { vim.fn.expand("~/fvm/default/bin/dart"), "language-server", "--protocol=lsp" },
+})
+
+vim.lsp.config("kotlin-language-server", {
+  cmd = { "kotlin-language-server" },
+  root_markers = { "settings.gradle.kts", "settings.gradle", "build.gradle.kts", "build.gradle", ".git" },
 })
 
 for _, server in ipairs(servers) do
