@@ -1,4 +1,4 @@
-require("mason").setup()
+-- require("mason").setup()
 
 -- LSP keymaps (attached per buffer)
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -9,6 +9,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local map = function(keys, func, desc)
       vim.keymap.set("n", keys, func, { buffer = buf, desc = desc })
     end
+
+    -- Navigation
+    map("gd", require("snacks").picker.lsp_definitions, "Goto Definition")
+    map("gr", require("snacks").picker.lsp_references, "References")
+    map("gi", require("snacks").picker.lsp_implementations, "Implementations")
+    map("<leader>ds", require("snacks").picker.lsp_symbols, "Document Symbols")
 
     -- Info
     if client.server_capabilities.hoverProvider then
@@ -32,45 +38,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
-local servers = { "dartls", "rust_analyzer", "vtsls", "lua_ls", "gopls", "kotlin-language-server" }
-
-for _, server in ipairs(servers) do
-  vim.lsp.config(server, {})
-end
-
+-- Server configurations
 vim.lsp.config("gopls", {
-  settings = {
-    gopls = {
-      completeUnimported = true,
-      usePlaceholders = true,
-      analyses = {
-        unusedparams = true,
-        shadow = true,
-        nilness = true,
-        unusedwrite = true,
-      },
-      codelenses = {
-        gc_details = false,
-        generate = true,
-        regenerate_cgo = true,
-        run_govulncheck = true,
-        test = true,
-        tidy = true,
-      },
-      hints = {
-        assignVariableTypes = true,
-        compositeLiteralFields = true,
-        constantValues = true,
-        functionTypeParameters = true,
-        parameterNames = true,
-        rangeVariableTypes = true,
-      },
-      staticcheck = true,
-    },
-  },
+  cmd = { "gopls" },
 })
 
 vim.lsp.config("lua_ls", {
+  cmd = { "lua-language-server" },
   settings = {
     Lua = {
       diagnostics = {
@@ -81,14 +55,24 @@ vim.lsp.config("lua_ls", {
 })
 
 vim.lsp.config("dartls", {
-  cmd = { vim.fn.expand("~/fvm/default/bin/dart"), "language-server", "--protocol=lsp" },
+  cmd = { vim.fn.expand("dart"), "language-server", "--protocol=lsp" },
 })
 
 vim.lsp.config("kotlin-language-server", {
   cmd = { "kotlin-language-server" },
-  root_markers = { "settings.gradle.kts", "settings.gradle", "build.gradle.kts", "build.gradle", ".git" },
+  filetypes = { "kotlin" }
+  -- root_markers = { "settings.gradle.kts", "settings.gradle", "build.gradle.kts", "build.gradle", ".git" },
 })
 
-for _, server in ipairs(servers) do
+vim.lsp.config("rust_analyzer", {
+  cmd = { "rust-analyzer" },
+})
+
+vim.lsp.config("vtsls", {
+  cmd = { "vtsls" },
+})
+
+-- Enable all servers
+for _, server in ipairs({ "gopls", "lua_ls", "dartls", "kotlin-language-server", "rust_analyzer", "vtsls" }) do
   vim.lsp.enable(server)
 end
