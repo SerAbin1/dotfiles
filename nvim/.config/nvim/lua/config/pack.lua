@@ -1,8 +1,8 @@
 vim.pack.add({
     "https://github.com/catppuccin/nvim",
     "https://github.com/neovim/nvim-lspconfig",
-    "https://github.com/williamboman/mason.nvim",
-    "https://github.com/williamboman/mason-lspconfig.nvim",
+    -- "https://github.com/williamboman/mason.nvim",
+    -- "https://github.com/williamboman/mason-lspconfig.nvim",
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
     "https://github.com/windwp/nvim-autopairs",
     "https://github.com/windwp/nvim-ts-autotag",

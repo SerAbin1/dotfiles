@@ -65,18 +65,3 @@ vim.keymap.set("n", "<leader>k", function()
   pick.files({ cwd = vim.fn.expand("%:p:h") })
 end, { desc = "Find files (current dir)" })
 
-vim.keymap.set("n", "gd", function()
-  pick.lsp_definitions()
-end, { desc = "Goto Definition (picker)" })
-
-vim.keymap.set("n", "gr", function()
-  pick.lsp_references()
-end, { desc = "References" })
-
-vim.keymap.set("n", "gi", function()
-  pick.lsp_implementations()
-end, { desc = "Implementations" })
-
-vim.keymap.set("n", "<leader>ds", function()
-  pick.lsp_symbols()
-end, { desc = "Document Symbols" })
