@@ -9,18 +9,6 @@ snacks.setup({
   scope = { enabled = true },
   scroll = { enabled = true },
   statuscolumn = { enabled = true },
-
-  picker = {
-  enabled = true,
-  on_show = function()
-    vim.cmd("stopinsert")
-  end,
-  win = {
-    input = {
-      insert = false,
-    },
-  },
-},
 })
 
 local pick = snacks.picker
@@ -64,4 +52,3 @@ end)
 vim.keymap.set("n", "<leader>k", function()
   pick.files({ cwd = vim.fn.expand("%:p:h") })
 end, { desc = "Find files (current dir)" })
-
