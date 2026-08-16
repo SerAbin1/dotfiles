@@ -19,6 +19,3 @@
 	conflictstyle = zdiff3
 [delta]
     side-by-side
-[alias]
-	hdiff = -c core.pager=\"hunk pager\" diff
-	hshow = -c core.pager=\"hunk pager\" show

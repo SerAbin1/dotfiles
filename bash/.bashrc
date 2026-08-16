@@ -19,7 +19,11 @@ shopt -s histappend
 HISTSIZE=10000
 HISTFILESIZE=20000
 
-PROMPT_COMMAND="history -a; history -c; history -r"
+# history -a — appends this session's new commands to ~/.bash_history
+# history -c — clears in-memory history
+# history -r — reloads the file back in
+# PROMPT_COMMAND="history -a; history -c; history -r"
+PROMPT_COMMAND="history -a"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -124,8 +128,13 @@ source /usr/share/fzf/completion.bash
 eval "$(zoxide init bash)"
 
 # start tmux if not already in tmux and is an interactive shell
-if [[ $- == *i* ]] && [ -z "$TMUX" ]; then
-    ~/.work.sh
+# if [[ $- == *i* ]] && [ -z "$TMUX" ]; then
+#     ~/.work.sh
+# fi
+
+# start herdr if not already in herdr and is an interactive shell
+if [[ $- == *i* ]] && [ -z "$HERDR_ENV" ]; then
+    herdr
 fi
 
 # nvm
@@ -155,3 +164,12 @@ export PATH="$PATH":"$HOME/dev/Android/platform-tools"
 
 # set editor to nvim (finally)
 export EDITOR=nvim
+
+# uv
+export PATH="/home/sonu007/.local/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/sonu007/dev/google-cloud-sdk/path.bash.inc' ]; then . '/home/sonu007/dev/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/sonu007/dev/google-cloud-sdk/completion.bash.inc' ]; then . '/home/sonu007/dev/google-cloud-sdk/completion.bash.inc'; fi

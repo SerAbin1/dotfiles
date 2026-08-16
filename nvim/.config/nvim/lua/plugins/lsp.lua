@@ -69,10 +69,15 @@ vim.lsp.config("rust_analyzer", {
 })
 
 vim.lsp.config("vtsls", {
-  cmd = { "vtsls" },
+  cmd = { "vtsls", "--stdio" },
+})
+
+vim.lsp.config("ty", {
+  cmd = { "ty", "server" },
+  filetypes = { "python" },
 })
 
 -- Enable all servers
-for _, server in ipairs({ "gopls", "lua_ls", "dartls", "kotlin-language-server", "rust_analyzer", "vtsls" }) do
+for _, server in ipairs({ "gopls", "lua_ls", "dartls", "kotlin-language-server", "rust_analyzer", "ty", "vtsls" }) do
   vim.lsp.enable(server)
 end

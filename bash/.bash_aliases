@@ -22,6 +22,8 @@ alias ls="eza --group-directories-first"
 
 alias tree="eza --tree --level=2"
 
+alias opencode="opencode --port"
+
 cr() {
     git init && gh repo create "$1" --public --source=. --remote=origin
 }
