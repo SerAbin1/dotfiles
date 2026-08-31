@@ -31,12 +31,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.lsp.inlay_hint.enable(true)
 
--- Format on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-  callback = function()
-    vim.lsp.buf.format({ async = false })
-  end,
-})
+-- Format on save disabled: handled by conform.nvim (formatting.lua) with lsp_fallback = true
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   callback = function()
+--     vim.lsp.buf.format({ async = false })
+--   end,
+-- })
 
 -- Server configurations
 vim.lsp.config("gopls", {

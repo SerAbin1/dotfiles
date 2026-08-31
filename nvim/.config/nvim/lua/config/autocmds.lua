@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd("FileType", {
   group = "CustomTabSettings",
   pattern = { "*" },
   callback = function()
-    local two_space = { "html", "javascript", "typescript", "css", "json", "lua", "java" }
+    local two_space = { "html", "javascript", "typescript", "css", "json", "lua", "java", "yaml" }
     local ft = vim.bo.filetype
     local indent = vim.tbl_contains(two_space, ft) and 2 or 4
 

@@ -8,10 +8,6 @@
     },
     "bash": {
       "*": "allow",
-      "pnpm lint": "allow",
-      "pnpm test*": "allow",
-      "npm lint": "allow",
-      "npm test*": "allow",
       "rm *": "deny",
       "npm *": "deny",
       "pnpm *": "deny",
@@ -23,7 +19,11 @@
       "git push *": "deny",
       "git reset --hard *": "deny",
       "git clean *": "deny",
-      "git checkout *": "deny"
+      "git checkout *": "deny",
+      "npm lint": "allow",
+      "npm test*": "allow",
+      "pnpm lint": "allow",
+      "pnpm test*": "allow"
     }
   }
 }
